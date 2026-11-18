@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b14">
+  <meta name="description" content="الموقع الرسمي لتطبيق مسار الغريب — رفيقك اليومي للقرآن والإنجاز والسكينة.">
+  <title>مسار الغريب | الموقع الرسمي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
+          colors: {
+            ink: '#070b14',
+            gold: '#e5b842',
+            emerald: '#0d8b68'
+          },
+          boxShadow: {
+            glow: '0 0 70px rgba(229,184,66,.12)',
+            emerald: '0 0 70px rgba(13,139,104,.13)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; background: #070b14; color: #f8fafc;
+      font-family: 'Tajawal', sans-serif; overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse at 78% 0%, rgba(229,184,66,.12), transparent 32rem),
+        radial-gradient(ellipse at 12% 20%, rgba(13,139,104,.13), transparent 35rem);
+    }
+    .glass { background: rgba(17,24,39,.65); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(18px); }
+    .gold-button {
+      color: #17130a; font-weight: 800;
+      background: linear-gradient(135deg,#f2d477 0%,#e5b842 48%,#c9961a 100%);
+      box-shadow: 0 10px 30px rgba(201,150,26,.18);
+      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .gold-button:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 14px 34px rgba(201,150,26,.25); }
+    .soft-button { border: 1px solid rgba(229,184,66,.32); background: rgba(229,184,66,.07); transition: .2s ease; }
+    .soft-button:hover { background: rgba(229,184,66,.13); border-color: rgba(229,184,66,.6); }
+    .section-kicker { color: #e5b842; letter-spacing: .04em; }
+    .phone-shell {
+      width: min(290px, 78vw); margin-inline: auto; padding: 10px;
+      border-radius: 38px; background: linear-gradient(145deg,#475569,#111827 35%,#020617 75%,#64748b);
+      box-shadow: 0 30px 90px rgba(0,0,0,.55), 0 0 55px rgba(13,139,104,.12);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .phone-screen {
+      min-height: 520px; border-radius: 30px; overflow: hidden; padding: 22px 16px 16px;
+      background: radial-gradient(circle at 80% 0%,rgba(229,184,66,.13),transparent 38%), linear-gradient(160deg,#101b27,#07111b 65%,#0a201d);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .phone-card { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.08); }
+    .feature-icon {
+      width: 48px; height: 48px; display: grid; place-items: center; border-radius: 16px;
+      color: #e5b842; background: rgba(229,184,66,.1); border: 1px solid rgba(229,184,66,.15);
+    }
+    .step-number {
+      width: 38px; height: 38px; flex: 0 0 38px; border-radius: 13px;
+      display: grid; place-items: center; color: #17130a; font-weight: 900;
+      background: linear-gradient(135deg,#f2d477,#c9961a);
+    }
+    .modal-backdrop { background: rgba(0,0,0,.72); backdrop-filter: blur(9px); }
+    .modal-panel { animation: pop .2s ease-out; }
+    @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .toast { animation: toast-in .25s ease-out; }
+    @keyframes toast-in { from { opacity: 0; transform: translate(-50%,12px); } to { opacity: 1; transform: translate(-50%,0); } }
+    .progress-indeterminate { width: 38%; animation: progress 1.15s ease-in-out infinite; }
+    @keyframes progress { 0% { transform: translateX(170%); } 100% { transform: translateX(-270%); } }
+    input { color-scheme: dark; }
+    :focus-visible { outline: 2px solid #e5b842; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+
+<body class="font-tajawal antialiased">
+  <!-- غيّر APK_DOWNLOAD_URL هنا عند الحاجة، أو من نافذة إعداد المطور أسفل الصفحة. -->
+  <script>
+    const APK_DOWNLOAD_URL = "https://github.com/ba1292356-cpu/masar-alghareeb/releases/download/v1.0.0/app-release.apk";
+    const DEFAULT_VERSION = "v1.0.0";
+    const DEFAULT_SIZE = "151 ميجابايت تقريباً";
+  </script>
+
+  <header class="sticky top-0 z-40 border-b border-white/5 bg-[#070b14]/85 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8" aria-label="التنقل الرئيسي">
+      <a href="#home" class="flex min-w-0 items-center gap-3">
+        <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/20 to-emerald-700/20 text-amber-300">
+          <svg viewBox="0 0 48 48" class="h-7 w-7" fill="none" aria-hidden="true">
+            <path d="M24 4 42 14.5v19L24 44 6 33.5v-19L24 4Z" stroke="currentColor" stroke-width="2"/>
+            <path d="m24 11 11 6.5v13L24 37l-11-6.5v-13L24 11Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 17v14M17 24h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="truncate text-lg font-extrabold sm:text-xl">مسار الغريب</div>
+          <div class="text-xs text-slate-400">نبض R.M 11121</div>
+        </div>
+        <span id="navVersion" class="hidden rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-xs font-bold text-amber-200 sm:inline-flex">v1.0.0</span>
+      </a>
+
+      <div class="hidden items-center gap-7 text-sm text-slate-300 md:flex">
+        <a class="transition hover:text-amber-300" href="#features">المميزات</a>
+        <a class="transition hover:text-amber-300" href="#install">طريقة التثبيت</a>
+      </div>
+      <a href="#download" class="gold-button inline-flex shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+        تحميل APK
+      </a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="relative mx-auto grid max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-10 lg:px-8 lg:py-24">
+      <div class="relative z-10 order-2 lg:order-1">
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[.07] px-4 py-2 text-sm text-emerald-200">
+          <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span></span>
+          متاح الآن للتحميل المباشر عبر متصفح Chrome
+        </div>
+        <h1 class="max-w-2xl text-4xl font-black leading-[1.35] tracking-tight sm:text-5xl lg:text-[3.55rem]">
+          رفيقك اليومي للقرآن،
+          <span class="bg-gradient-to-l from-amber-200 via-amber-400 to-emerald-300 bg-clip-text text-transparent">والإنجاز، والسكينة</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-9 text-slate-300">
+          مساحة تجمع وردك القرآني والتلاوات، وتنظيم مهامك وعاداتك، والتزكية وهدوء النفس؛ في تجربة إسلامية متكاملة صُممت لترافق يومك ببساطة وطمأنينة.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button onclick="startDownload()" class="gold-button inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-4 text-base">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+            <span class="text-right"><span class="block">تنزيل التطبيق للأندرويد APK</span><span id="heroDownloadMeta" class="block text-xs font-semibold opacity-75">v1.0.0 · 151 ميجابايت تقريباً</span></span>
+          </button>
+          <button onclick="openQrModal()" class="soft-button inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 font-bold text-amber-100">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 14v2m-3 3h2m2 0v2"/></svg>
+            مسح QR للجوال
+          </button>
+        </div>
+
+        <div class="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm text-slate-400">
+          <span class="inline-flex items-center gap-2"><span class="text-emerald-400">✓</span> مجاني وخالٍ من الإعلانات</span>
+          <span class="inline-flex items-center gap-2"><span class="text-emerald-400">✓</span> يعمل بدون إنترنت في الميزات المتاحة دون اتصال</span>
+          <span class="inline-flex items-center gap-2"><span class="text-emerald-400">✓</span> أندرويد 8.0 فأحدث</span>
+        </div>
+        <p class="mt-4 text-xs leading-6 text-slate-500">قد يتطلب تنزيل بعض المحتويات أو استخدام بعض الخدمات اتصالاً بالإنترنت.</p>
+      </div>
+
+      <div class="relative order-1 flex justify-center lg:order-2">
+        <div class="absolute right-1/2 top-1/2 h-72 w-72 -translate-y-1/2 translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div class="absolute right-1/2 top-1/3 h-56 w-56 translate-x-1/2 rounded-full bg-amber-400/10 blur-3xl"></div>
+        <div class="phone-shell relative">
+          <div class="phone-screen">
+            <div class="mx-auto mb-6 h-1.5 w-16 rounded-full bg-white/15"></div>
+            <div class="flex items-center justify-between">
+              <div class="text-xs text-slate-400">أهلاً بك في رحلتك</div>
+              <div class="rounded-full border border-amber-300/20 bg-amber-300/10 px-2 py-1 text-[10px] text-amber-200">نبض R.M 11121</div>
+            </div>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/20 to-emerald-600/20 text-amber-300">
+                <svg viewBox="0 0 48 48" class="h-9 w-9" fill="none"><path d="M24 4 42 14.5v19L24 44 6 33.5v-19L24 4Z" stroke="currentColor" stroke-width="2"/><path d="M24 17v14M17 24h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div><div class="text-lg font-extrabold">مسار الغريب</div><div class="mt-1 text-xs text-slate-400">خطوة هادئة نحو الأفضل</div></div>
+            </div>
+            <div class="mt-7 rounded-2xl border border-emerald-300/15 bg-emerald-400/[.07] p-4">
+              <div class="text-xs text-emerald-200">مساحتك اليومية</div>
+              <div class="mt-2 text-xl font-bold">اجعل لقلبك نصيباً</div>
+              <div class="mt-2 text-xs leading-6 text-slate-400">قليل دائم، خير من كثير منقطع.</div>
+            </div>
+            <div class="mt-5 space-y-3">
+              <div class="phone-card flex items-center gap-3 rounded-2xl p-3">
+                <div class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-400/10 text-xl">۞</div>
+                <div class="flex-1"><div class="font-bold">محراب جنتي</div><div class="mt-1 text-xs text-slate-400">وردك وتلاواتك القرآنية</div></div><span class="text-slate-500">‹</span>
+              </div>
+              <div class="phone-card flex items-center gap-3 rounded-2xl p-3">
+                <div class="grid h-11 w-11 place-items-center rounded-xl bg-amber-300/10 text-xl">✦</div>
+                <div class="flex-1"><div class="font-bold">سراج الهمّة</div><div class="mt-1 text-xs text-slate-400">مهامك وعاداتك اليومية</div></div><span class="text-slate-500">‹</span>
+              </div>
+              <div class="phone-card flex items-center gap-3 rounded-2xl p-3">
+                <div class="grid h-11 w-11 place-items-center rounded-xl bg-sky-300/10 text-xl">☾</div>
+                <div class="flex-1"><div class="font-bold">واحة هدوء</div><div class="mt-1 text-xs text-slate-400">مساحة للسكينة والتخصيص</div></div><span class="text-slate-500">‹</span>
+              </div>
+            </div>
+            <div class="mt-7 flex items-center justify-around border-t border-white/10 pt-4 text-[10px] text-slate-500">
+              <span class="text-amber-200">الرئيسية</span><span>القرآن</span><span>الإنجاز</span><span>حسابي</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <div class="section-kicker text-sm font-bold">ماذا يقدم لك؟</div>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">كل ما يعينك في مسارك</h2>
+        <p class="mt-4 leading-8 text-slate-400">أدوات متنوعة في مكان واحد، بتجربة هادئة تساعدك على الاستمرار.</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="glass rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-amber-300/25">
+          <div class="feature-icon text-2xl">۞</div>
+          <h3 class="mt-5 text-xl font-extrabold">القرآن وجنتي</h3>
+          <p class="mt-3 leading-8 text-slate-400">مصحف متكامل مع فهرس ذكي، وخطط للختمة والحفظ، وتلاوات خاشعة مع التكرار.</p>
+        </article>
+        <article class="glass rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-amber-300/25">
+          <div class="feature-icon text-2xl">✦</div>
+          <h3 class="mt-5 text-xl font-extrabold">إدارة المهام والعادات</h3>
+          <p class="mt-3 leading-8 text-slate-400">رتّب مهامك اليومية وعاداتك المتجددة بأسلوب بصري محفّز يساعدك على كسر الملل.</p>
+        </article>
+        <article class="glass rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-amber-300/25">
+          <div class="feature-icon text-2xl">❖</div>
+          <h3 class="mt-5 text-xl font-extrabold">التزكية وحفظ الأثر</h3>
+          <p class="mt-3 leading-8 text-slate-400">مساحة خاصة لمراجعة النفس، وتوثيق الخبايا الصالحة، ووصفات قرآنية لراحة القلب.</p>
+        </article>
+        <article class="glass rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-amber-300/25">
+          <div class="feature-icon text-2xl">☾</div>
+          <h3 class="mt-5 text-xl font-extrabold">واحة هدوء وتخصيص</h3>
+          <p class="mt-3 leading-8 text-slate-400">ركن هادئ للاسترخاء مع أنماط ألوان ومظاهر متعددة، في الوضعين الليلي والنهاري.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="install" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_.8fr]">
+        <div>
+          <div class="section-kicker text-sm font-bold">خطوات بسيطة</div>
+          <h2 class="mt-3 text-3xl font-extrabold">كيف تثبّت التطبيق عبر Chrome؟</h2>
+          <p class="mt-3 leading-8 text-slate-400">اتبع الخطوات التالية بعد تنزيل ملف APK على هاتفك.</p>
+          <div class="mt-8 space-y-4">
+            <div class="glass flex gap-4 rounded-2xl p-5">
+              <div class="step-number">1</div>
+              <div><h3 class="text-lg font-bold">تنزيل الملف</h3><p class="mt-1 leading-7 text-slate-400">اضغط زر التنزيل، وانتظر حتى يكتمل تحميل ملف التطبيق من GitHub.</p></div>
+            </div>
+            <div class="glass flex gap-4 rounded-2xl p-5">
+              <div class="step-number">2</div>
+              <div><h3 class="text-lg font-bold">السماح بالتثبيت من هذا المصدر</h3><p class="mt-1 leading-7 text-slate-400">إذا طلب Android ذلك، افتح إعدادات السماح بالتثبيت من Chrome وفعّل الإذن. قد تختلف أسماء الخيارات حسب إصدار النظام.</p></div>
+            </div>
+            <div class="glass flex gap-4 rounded-2xl p-5">
+              <div class="step-number">3</div>
+              <div><h3 class="text-lg font-bold">تثبيت التطبيق</h3><p class="mt-1 leading-7 text-slate-400">ارجع إلى ملف APK الذي تم تنزيله، واضغط تثبيت، ثم افتح التطبيق بعد اكتمال العملية.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <aside id="download" class="glass h-fit rounded-3xl p-6 sm:p-8">
+          <div class="flex items-center justify-between gap-3">
+            <div><div class="section-kicker text-sm font-bold">التحميل الرسمي</div><h2 class="mt-2 text-2xl font-extrabold">مسار الغريب</h2></div>
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-300/10 text-amber-200">⬇</div>
+          </div>
+          <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
+            <div class="flex items-center justify-between text-sm"><span class="text-slate-400">الإصدار</span><strong id="cardVersion">v1.0.0</strong></div>
+            <div class="mt-3 flex items-center justify-between text-sm"><span class="text-slate-400">حجم الملف</span><strong id="cardSize">151 ميجابايت تقريباً</strong></div>
+            <div class="mt-3 flex items-center justify-between text-sm"><span class="text-slate-400">نوع الملف</span><strong>Android APK</strong></div>
+          </div>
+          <button onclick="startDownload()" class="gold-button mt-5 flex w-full items-center justify-center gap-2 rounded-xl px-5 py-4 font-extrabold">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+            تنزيل ملف APK
+          </button>
+          <button onclick="copyDownloadLink()" class="soft-button mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold text-amber-100">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+            نسخ رابط التحميل
+          </button>
+          <p class="mt-4 text-center text-xs leading-6 text-slate-500">ملف التثبيت المتاح حالياً هو APK واحد. لا تتوفر حالياً خيارات منفصلة باسم ARM64 أو Universal.</p>
+          <a href="https://github.com/ba1292356-cpu/masar-alghareeb/releases" target="_blank" rel="noopener noreferrer" class="mt-4 block text-center text-sm text-amber-200 underline decoration-amber-200/30 underline-offset-4 hover:text-amber-100">عرض جميع الإصدارات والتحديثات</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-black/10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-center sm:px-6 md:flex-row md:text-right lg:px-8">
+      <div><div class="font-bold">مسار الغريب <span class="text-amber-300">•</span> نبض R.M 11121</div><p class="mt-1 text-sm text-slate-500">© 2026 جميع الحقوق محفوظة.</p></div>
+      <button onclick="openSettingsModal()" class="rounded-xl border border-white/10 px-4 py-2.5 text-sm text-slate-300 transition hover:border-amber-300/30 hover:text-amber-200">إعداد رابط ملف APK للمطور</button>
+    </div>
+  </footer>
+
+  <!-- نافذة التحميل -->
+  <div id="downloadModal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+    <div class="modal-panel glass w-full max-w-md rounded-3xl p-7 text-center shadow-2xl">
+      <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-amber-300/10 text-amber-200">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+      </div>
+      <h2 id="downloadTitle" class="mt-5 text-2xl font-extrabold">جارٍ تجهيز التحميل</h2>
+      <p id="downloadMessage" class="mt-2 leading-7 text-slate-400">سيتم تحويلك إلى ملف التطبيق على GitHub لبدء التنزيل.</p>
+      <div class="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div class="progress-indeterminate h-full rounded-full bg-gradient-to-l from-amber-300 to-emerald-400"></div></div>
+      <div class="mt-6 flex gap-3">
+        <button id="downloadContinue" onclick="continueDownload()" class="gold-button flex-1 rounded-xl px-4 py-3 font-bold">متابعة التنزيل</button>
+        <button onclick="closeModal('downloadModal')" class="rounded-xl border border-white/10 px-4 py-3 text-slate-300">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة QR -->
+  <div id="qrModal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+    <div class="modal-panel glass w-full max-w-sm rounded-3xl p-7 text-center">
+      <button onclick="closeModal('qrModal')" class="float-left rounded-lg px-2 py-1 text-xl text-slate-400 hover:text-white" aria-label="إغلاق">×</button>
+      <h2 id="qrTitle" class="text-2xl font-extrabold">امسح الرمز بجوالك</h2>
+      <p class="mt-2 text-sm leading-6 text-slate-400">وجّه كاميرا هاتفك إلى الرمز لفتح رابط تنزيل التطبيق.</p>
+      <div class="mx-auto mt-6 flex min-h-56 w-56 items-center justify-center rounded-2xl bg-white p-3">
+        <div id="qrContainer" class="flex items-center justify-center"></div>
+      </div>
+      <p class="mt-4 break-all text-xs text-slate-500">رابط تنزيل التطبيق المباشر</p>
+      <button onclick="copyDownloadLink()" class="soft-button mt-4 rounded-xl px-5 py-2.5 text-sm font-bold text-amber-100">نسخ الرابط</button>
+    </div>
+  </div>
+
+  <!-- نافذة إعداد المطور -->
+  <div id="settingsModal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto p-4" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-panel glass my-auto w-full max-w-lg rounded-3xl p-6 sm:p-7">
+      <div class="flex items-center justify-between gap-3">
+        <div><div class="section-kicker text-xs font-bold">إعدادات النشر</div><h2 id="settingsTitle" class="mt-1 text-2xl font-extrabold">إعداد رابط APK</h2></div>
+        <button onclick="closeModal('settingsModal')" class="rounded-lg px-2 py-1 text-2xl text-slate-400 hover:text-white" aria-label="إغلاق">×</button>
+      </div>
+      <p class="mt-3 text-sm leading-7 text-slate-400">حدّث بيانات الإصدار والرابط قبل نشر الصفحة. تُحفظ هذه الإعدادات في هذا المتصفح فقط، ولا تغيّر نسخة الموقع المنشورة للزوار الآخرين.</p>
+      <form id="settingsForm" class="mt-6 space-y-4">
+        <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">رابط ملف APK المباشر</span><input id="settingUrl" type="url" required dir="ltr" class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-left text-sm outline-none focus:border-amber-300/50" placeholder="https://..."></label>
+        <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">رقم الإصدار</span><input id="settingVersion" type="text" required dir="ltr" class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-left text-sm outline-none focus:border-amber-300/50" placeholder="v1.0.0"></label>
+        <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">حجم الملف</span><input id="settingSize" type="text" required class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-sm outline-none focus:border-amber-300/50" placeholder="151 ميجابايت تقريباً"></label>
+        <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row">
+          <button type="submit" class="gold-button flex-1 rounded-xl px-4 py-3 font-extrabold">حفظ الإعدادات</button>
+          <button type="button" onclick="resetSettings()" class="rounded-xl border border-white/10 px-4 py-3 text-slate-300 hover:border-white/20">استعادة الافتراضي</button>
+        </div>
+      </form>
+      <p class="mt-4 text-xs leading-6 text-slate-500">لتحديث الموقع لجميع الزوار، غيّر القيم الافتراضية في أعلى ملف index.html ثم أعد رفعه إلى الاستضافة.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast fixed bottom-6 left-1/2 z-[70] hidden -translate-x-1/2 rounded-xl border border-emerald-300/20 bg-slate-900 px-5 py-3 text-sm font-bold text-emerald-100 shadow-2xl" role="status" aria-live="polite"></div>
+
+  <script>
+    const DEFAULTS = {
+      url: APK_DOWNLOAD_URL,
+      version: DEFAULT_VERSION,
+      size: DEFAULT_SIZE
+    };
+
+    let appSettings = { ...DEFAULTS };
+    let toastTimer = null;
+
+    function loadSettings() {
+      try {
+        const saved = localStorage.getItem('masarAlghareebSiteSettings');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && typeof parsed === 'object') {
+            appSettings = {
+              url: typeof parsed.url === 'string' && parsed.url.trim() ? parsed.url.trim() : DEFAULTS.url,
+              version: typeof parsed.version === 'string' && parsed.version.trim() ? parsed.version.trim() : DEFAULTS.version,
+              size: typeof parsed.size === 'string' && parsed.size.trim() ? parsed.size.trim() : DEFAULTS.size
+            };
+          }
+        }
+      } catch (_) {
+        appSettings = { ...DEFAULTS };
+      }
+      updateDisplayedSettings();
+    }
+
+    function updateDisplayedSettings() {
+      document.getElementById('navVersion').textContent = appSettings.version;
+      document.getElementById('heroDownloadMeta').textContent = `${appSettings.version} · ${appSettings.size}`;
+      document.getElementById('cardVersion').textContent = appSettings.version;
+      document.getElementById('cardSize').textContent = appSettings.size;
+    }
+
+    function isValidDownloadUrl(value) {
+      try {
+        const parsed = new URL(value);
+        return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+      } catch (_) { return false; }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 2800);
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      if (![...document.querySelectorAll('[role="dialog"]')].some(el => !el.classList.contains('hidden'))) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function startDownload() {
+      if (!isValidDownloadUrl(appSettings.url)) {
+        showToast('رابط التحميل غير صالح. راجع إعدادات المطور.');
+        return;
+      }
+      document.getElementById('downloadTitle').textContent = 'جارٍ تجهيز التحميل';
+      document.getElementById('downloadMessage').textContent = `الإصدار ${appSettings.version} — ${appSettings.size}. اضغط متابعة لفتح ملف APK.`;
+      openModal('downloadModal');
+    }
+
+    function continueDownload() {
+      if (!isValidDownloadUrl(appSettings.url)) {
+        showToast('رابط التحميل غير صالح.');
+        return;
+      }
+      const link = document.createElement('a');
+      link.href = appSettings.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.download = '';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      closeModal('downloadModal');
+      showToast('تم فتح رابط التحميل. إذا لم يبدأ التنزيل، اختر تنزيل من صفحة GitHub.');
+    }
+
+    async function copyDownloadLink() {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(appSettings.url);
+        } else {
+          const helper = document.createElement('textarea');
+          helper.value = appSettings.url;
+          helper.style.position = 'fixed';
+          helper.style.opacity = '0';
+          document.body.appendChild(helper);
+          helper.select();
+          const copied = document.execCommand('copy');
+          helper.remove();
+          if (!copied) throw new Error('copy failed');
+        }
+        showToast('تم نسخ رابط التحميل.');
+      } catch (_) {
+        showToast('تعذّر النسخ تلقائياً. يمكنك نسخ الرابط من إعدادات المطور.');
+      }
+    }
+
+    async function openQrModal() {
+      openModal('qrModal');
+      const container = document.getElementById('qrContainer');
+      container.innerHTML = '';
+      if (!isValidDownloadUrl(appSettings.url)) {
+        container.textContent = 'رابط التحميل غير صالح';
+        return;
+      }
+      if (window.QRCode && typeof QRCode.toString === 'function') {
+        try {
+          const svg = await QRCode.toString(appSettings.url, {
+            type: 'svg', errorCorrectionLevel: 'H', margin: 2,
+            color: { dark: '#07111b', light: '#ffffff' }, width: 220
+          });
+          container.innerHTML = svg;
+          const svgEl = container.querySelector('svg');
+          if (svgEl) { svgEl.setAttribute('width', '220'); svgEl.setAttribute('height', '220'); }
+        } catch (_) {
+          container.textContent = 'تعذّر إنشاء الرمز. تحقق من اتصال الإنترنت.';
+        }
+      } else {
+        container.textContent = 'تعذّر تحميل مولّد QR. تحقق من اتصال الإنترنت ثم أعد المحاولة.';
+      }
+    }
+
+    function openSettingsModal() {
+      document.getElementById('settingUrl').value = appSettings.url;
+      document.getElementById('settingVersion').value = appSettings.version;
+      document.getElementById('settingSize').value = appSettings.size;
+      openModal('settingsModal');
+    }
+
+    document.getElementById('settingsForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const url = document.getElementById('settingUrl').value.trim();
+      const version = document.getElementById('settingVersion').value.trim();
+      const size = document.getElementById('settingSize').value.trim();
+      if (!isValidDownloadUrl(url)) {
+        showToast('أدخل رابطاً صحيحاً يبدأ بـ https:// أو http://');
+        return;
+      }
+      if (!version || !size) {
+        showToast('أكمل رقم الإصدار وحجم الملف.');
+        return;
+      }
+      appSettings = { url, version, size };
+      try {
+        localStorage.setItem('masarAlghareebSiteSettings', JSON.stringify(appSettings));
+      } catch (_) {
+        showToast('تم تحديث البيانات لهذه الجلسة، لكن تعذّر حفظها في المتصفح.');
+      }
+      updateDisplayedSettings();
+      closeModal('settingsModal');
+      showToast('تم حفظ الإعدادات في هذا المتصفح.');
+    });
+
+    function resetSettings() {
+      appSettings = { ...DEFAULTS };
+      try { localStorage.removeItem('masarAlghareebSiteSettings'); } catch (_) {}
+      updateDisplayedSettings();
+      openSettingsModal();
+      showToast('تمت استعادة بيانات الإصدار الافتراضية.');
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        ['downloadModal', 'qrModal', 'settingsModal'].forEach(id => {
+          if (!document.getElementById(id).classList.contains('hidden')) closeModal(id);
+        });
+      }
+    });
+
+    document.querySelectorAll('[role="dialog"]').forEach(modal => {
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeModal(modal.id);
+      });
+    });
+
+    loadSettings();
+  </script>
+</body>
+</html>
