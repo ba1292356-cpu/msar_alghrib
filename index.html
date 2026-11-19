@@ -104,8 +104,8 @@
 <body class="font-tajawal antialiased">
   <!-- غيّر APK_DOWNLOAD_URL هنا عند الحاجة، أو من نافذة إعداد المطور أسفل الصفحة. -->
   <script>
-    const APK_DOWNLOAD_URL = "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.0/app-release.apk";
-    const DEFAULT_VERSION = "v1.0.0";
+    const APK_DOWNLOAD_URL = "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.1/app-release.apk";
+    const DEFAULT_VERSION = "v1.0.1";
     const DEFAULT_SIZE = "151 ميجابايت تقريباً";
   </script>
 
@@ -123,7 +123,7 @@
         <div class="min-w-0">
           <div class="truncate text-lg font-extrabold sm:text-xl">مسار الغريب</div>
         </div>
-        <span id="navVersion" class="hidden rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-xs font-bold text-amber-200 sm:inline-flex">v1.0.0</span>
+        <span id="navVersion" class="hidden rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-xs font-bold text-amber-200 sm:inline-flex">v1.0.1</span>
       </a>
 
       <div class="hidden items-center gap-7 text-sm text-slate-300 md:flex">
@@ -155,7 +155,7 @@
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <button onclick="startDownload()" class="gold-button inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-4 text-base">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
-            <span class="text-right"><span class="block">تنزيل التطبيق للأندرويد APK</span><span class="mt-0.5 flex items-center gap-2 text-xs font-semibold opacity-75"><span id="heroVersion" class="meta-val" dir="ltr">v1.0.0</span><span aria-hidden="true">·</span><span id="heroSize" class="meta-val">151 ميجابايت تقريباً</span></span></span>
+            <span class="text-right"><span class="block">تنزيل التطبيق للأندرويد APK</span><span class="mt-0.5 flex items-center gap-2 text-xs font-semibold opacity-75"><span id="heroVersion" class="meta-val" dir="ltr">v1.0.1</span><span aria-hidden="true">·</span><span id="heroSize" class="meta-val">151 ميجابايت تقريباً</span></span></span>
           </button>
           <button onclick="openQrModal()" class="soft-button inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 font-bold text-amber-100">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 14v2m-3 3h2m2 0v2"/></svg>
@@ -272,7 +272,7 @@
             <div class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-300/10 text-amber-200">⬇</div>
           </div>
           <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
-            <div class="flex items-center justify-between text-sm"><span class="text-slate-400">الإصدار</span><strong id="cardVersion" class="meta-val" dir="ltr">v1.0.0</strong></div>
+            <div class="flex items-center justify-between text-sm"><span class="text-slate-400">الإصدار</span><strong id="cardVersion" class="meta-val" dir="ltr">v1.0.1</strong></div>
             <div class="mt-3 flex items-center justify-between text-sm"><span class="text-slate-400">حجم الملف</span><strong id="cardSize">151 ميجابايت تقريباً</strong></div>
             <div class="mt-3 flex items-center justify-between text-sm"><span class="text-slate-400">نوع الملف</span><strong>Android APK</strong></div>
           </div>
@@ -306,7 +306,7 @@
       </div>
       <h2 id="downloadTitle" class="mt-5 text-2xl font-extrabold">جارٍ تجهيز التحميل</h2>
       <div class="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm">
-        <div class="flex items-center justify-between gap-3"><span class="text-slate-400">الإصدار</span><strong id="dlVersion" class="meta-val" dir="ltr">v1.0.0</strong></div>
+        <div class="flex items-center justify-between gap-3"><span class="text-slate-400">الإصدار</span><strong id="dlVersion" class="meta-val" dir="ltr">v1.0.1</strong></div>
         <div class="mt-3 flex items-center justify-between gap-3"><span class="text-slate-400">الحجم</span><strong id="dlSize" class="meta-val">151 ميجابايت تقريباً</strong></div>
       </div>
       <button id="dlBar" type="button" onclick="doDownload()" disabled class="dl-bar mt-6" aria-live="polite">
@@ -341,7 +341,7 @@
       <p class="mt-3 text-sm leading-7 text-slate-400">حدّث بيانات الإصدار والرابط قبل نشر الصفحة. تُحفظ هذه الإعدادات في هذا المتصفح فقط، ولا تغيّر نسخة الموقع المنشورة للزوار الآخرين.</p>
       <form id="settingsForm" class="mt-6 space-y-4">
         <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">رابط ملف APK المباشر</span><input id="settingUrl" type="url" required dir="ltr" class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-left text-sm outline-none focus:border-amber-300/50" placeholder="https://..."></label>
-        <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">رقم الإصدار</span><input id="settingVersion" type="text" required dir="ltr" class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-left text-sm outline-none focus:border-amber-300/50" placeholder="v1.0.0"></label>
+        <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">رقم الإصدار</span><input id="settingVersion" type="text" required dir="ltr" class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-left text-sm outline-none focus:border-amber-300/50" placeholder="v1.0.1"></label>
         <label class="block"><span class="mb-2 block text-sm font-bold text-slate-200">حجم الملف</span><input id="settingSize" type="text" required class="w-full rounded-xl border border-white/10 bg-black/25 px-4 py-3 text-sm outline-none focus:border-amber-300/50" placeholder="151 ميجابايت تقريباً"></label>
         <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row">
           <button type="submit" class="gold-button flex-1 rounded-xl px-4 py-3 font-extrabold">حفظ الإعدادات</button>
