@@ -1,10 +1,11 @@
 {
-    "versionName": "1.0.3",
-    "buildNumber": 4,
-    "apkUrl": "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.3/app-release.apk",
-    "sizeBytes": 106773263,
-    "sha256": "e5e63ffcee3e161f43f002a9c9a7ca667b0a2f80b4950d6a1ce04540c8a93f80",
-    "notes": [
-        "تحسينات وإصلاحات"
-    ]
+    "versionName":  "1.0.4",
+    "buildNumber":  5,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.4/app-release.apk",
+    "sizeBytes":  106872863,
+    "sha256":  "00fd80591e039d3e5f683fb421105b568fb06633402cefa19dc8a80bc1317ab0",
+    "notes":  [
+                  "إضافة سياسة الخصوصية",
+                  "تحسين الاستقرار"
+              ]
 }
