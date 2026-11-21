@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
   <meta name="theme-color" content="#070b14">
   <meta name="description" content="الموقع الرسمي لتطبيق مسار الغريب — رفيقك اليومي للقرآن والإنجاز والسكينة.">
   <title>مسار الغريب | الموقع الرسمي</title>
@@ -97,11 +97,53 @@
     .meta-val { unicode-bidi: isolate; }
     input { color-scheme: dark; }
     :focus-visible { outline: 2px solid #e5b842; outline-offset: 3px; }
+
+    /* ===== نجوم الذهب السائل ===== */
+    .lstar { width:100%; height:100%; display:block; overflow:visible; }
+    .lstar-bg { fill: rgba(255,255,255,.04); stroke: rgba(229,184,66,.18); stroke-width: 1.4; stroke-linejoin: round; }
+    .lstar-line { fill:none; stroke: rgba(229,184,66,.6); stroke-width: 1.1; stroke-linejoin: round; }
+    .lstar-level { transform: translateY(21.2px); transition: transform 1.3s cubic-bezier(.22,1,.36,1); }
+    .lstar-wave { animation: lwave 2.6s linear infinite; }
+    .lstar-wave2 { animation: lwave 4.2s linear infinite reverse; }
+    @keyframes lwave { from { transform: translateX(0); } to { transform: translateX(-12px); } }
+    .lstar-wrap { transition: filter .6s ease; }
+    .lstar-wrap.filled { filter: drop-shadow(0 0 7px rgba(229,184,66,.55)); }
+    .gold-text { background: linear-gradient(135deg,#fbe9a6,#e5b842 55%,#c9961a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .star-btn { width: clamp(46px, 14vw, 62px); aspect-ratio: 1; padding: 0; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+    .star-btn:active { transform: scale(.86); }
+    .star-btn.pop { animation: starpop .5s cubic-bezier(.34,1.56,.64,1); }
+    @keyframes starpop { 0% { transform: scale(1); } 45% { transform: scale(1.28) rotate(-6deg); } 100% { transform: scale(1); } }
+    /* ===== قوالب المجتمع ===== */
+    .c-card { position: relative; overflow: hidden; border-radius: 1.6rem; padding: 1.4rem; text-align: right;
+      background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.015)); backdrop-filter: blur(14px);
+      transition: transform .3s ease, box-shadow .3s ease; }
+    .c-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(229,184,66,.6), rgba(255,255,255,.04) 40%, rgba(13,139,104,.5));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .c-card::after { content: ''; position: absolute; width: 11rem; height: 11rem; border-radius: 50%; top: -4.5rem; left: -4.5rem; pointer-events: none;
+      background: radial-gradient(circle, rgba(229,184,66,.2), transparent 65%); }
+    .c-card.green::after { background: radial-gradient(circle, rgba(13,139,104,.28), transparent 65%); }
+    .c-card:hover { transform: translateY(-4px); box-shadow: 0 22px 60px rgba(0,0,0,.35), 0 0 50px rgba(229,184,66,.08); }
+    .c-ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 15px; color: #e5b842; background: rgba(229,184,66,.1); border: 1px solid rgba(229,184,66,.2); }
+    .c-card .gold-button, .c-card .soft-button { width: 100%; }
+    .cmt { border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04); border-radius: 1.1rem; padding: .9rem 1rem; animation: pop .25s ease-out; }
+    .cmt.mine { border-color: rgba(229,184,66,.35); background: rgba(229,184,66,.06); }
+    .sheet-in { animation: sheet .3s cubic-bezier(.22,1,.36,1); }
+    @keyframes sheet { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 
 <body class="font-tajawal antialiased">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="goldLiquid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fbe9a6"/><stop offset=".45" stop-color="#e5b842"/><stop offset="1" stop-color="#b9831a"/>
+      </linearGradient>
+      <clipPath id="starClip"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></clipPath>
+    </defs>
+  </svg>
+
   <!-- غيّر APK_DOWNLOAD_URL هنا عند الحاجة، أو من نافذة إعداد المطور أسفل الصفحة. -->
   <script>
     const APK_DOWNLOAD_URL = "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.2/app-release.apk";
@@ -118,7 +160,7 @@
             <path d="m24 11 11 6.5v13L24 37l-11-6.5v-13L24 11Z" stroke="currentColor" stroke-width="1.5"/>
             <path d="M24 17v14M17 24h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <img src="icon.png" alt="" class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
+          <img src="icon.png" alt="" class="absolute inset-0 h-full w-full object-cover" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()">
         </div>
         <div class="min-w-0">
           <div class="truncate text-lg font-extrabold sm:text-xl">مسار الغريب</div>
@@ -183,7 +225,7 @@
             <div class="mt-5 flex items-center gap-3">
               <div class="relative grid h-14 w-14 place-items-center overflow-hidden rounded-2xl border border-amber-300/20 bg-gradient-to-br from-amber-300/20 to-emerald-600/20 text-amber-300">
                 <svg viewBox="0 0 48 48" class="h-9 w-9" fill="none"><path d="M24 4 42 14.5v19L24 44 6 33.5v-19L24 4Z" stroke="currentColor" stroke-width="2"/><path d="M24 17v14M17 24h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                <img src="icon.png" alt="" class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
+                <img src="icon.png" alt="" class="absolute inset-0 h-full w-full object-cover" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()">
               </div>
               <div><div class="text-lg font-extrabold">مسار الغريب</div><div class="mt-1 text-xs text-slate-400">خطوة هادئة نحو الأفضل</div></div>
             </div>
@@ -211,6 +253,51 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="community" class="mx-auto max-w-5xl px-4 pb-4 pt-2 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <div class="section-kicker text-sm font-bold">آراء المستخدمين</div>
+        <div id="avgStars" dir="ltr" class="mx-auto mt-4 flex w-fit items-center justify-center gap-1.5 sm:gap-2" role="img" aria-label="متوسط التقييم"></div>
+        <div class="mt-3 flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1">
+          <span id="avgNum" class="gold-text text-4xl font-black">—</span>
+          <span id="avgSub" class="text-sm text-slate-400">جارٍ التحميل…</span>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        <!-- القالب 1: عدد التحميلات -->
+        <article class="c-card">
+          <div class="flex items-center justify-between">
+            <div class="c-ico"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg></div>
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-bold text-emerald-200"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>رقم حقيقي</span>
+          </div>
+          <div class="mt-5 text-sm font-bold text-slate-300">عدد التحميلات</div>
+          <div id="dlCount" class="gold-text mt-1 text-5xl font-black leading-tight" dir="ltr" style="text-align:right">—</div>
+          <p id="dlCountSub" class="mt-2 text-xs leading-6 text-slate-500">عدد مرات تنزيل ملف التطبيق من GitHub.</p>
+        </article>
+
+        <!-- القالب 2: قيّم التطبيق -->
+        <article class="c-card green flex flex-col">
+          <div class="c-ico"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+          <div class="mt-5 text-sm font-bold text-slate-300">شاركنا رأيك</div>
+          <div class="mt-1 text-3xl font-black">قيّم التطبيق</div>
+          <div id="miniStars" dir="ltr" class="mt-4 flex w-fit gap-1.5"></div>
+          <button type="button" onclick="openRateModal()" class="gold-button mt-5 rounded-xl px-5 py-3.5 font-extrabold">تقييم</button>
+        </article>
+
+        <!-- القالب 3: التعليقات -->
+        <article class="c-card flex flex-col">
+          <div class="flex items-center justify-between">
+            <div class="c-ico"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg></div>
+            <span id="cmtCount" class="gold-text text-3xl font-black" dir="ltr">—</span>
+          </div>
+          <div class="mt-5 text-sm font-bold text-slate-300">ماذا قالوا عن التطبيق؟</div>
+          <div class="mt-1 text-3xl font-black">التعليقات</div>
+          <p id="cmtPreview" class="mt-3 line-clamp-2 min-h-[3rem] text-xs leading-6 text-slate-500">كن أول من يكتب تجربته.</p>
+          <button type="button" onclick="openCommentsModal()" class="soft-button mt-3 rounded-xl px-5 py-3.5 font-bold text-amber-100">عرض التعليقات</button>
+        </article>
       </div>
     </section>
 
@@ -349,6 +436,41 @@
         </div>
       </form>
       <p class="mt-4 text-xs leading-6 text-slate-500">لتحديث الموقع لجميع الزوار، غيّر القيم الافتراضية في أعلى ملف index.html ثم أعد رفعه إلى الاستضافة.</p>
+    </div>
+  </div>
+
+  <!-- نافذة التقييم -->
+  <div id="rateModal" class="modal-backdrop fixed inset-0 z-50 hidden items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="rateTitle">
+    <div class="sheet-in glass max-h-[94dvh] w-full max-w-md overflow-y-auto rounded-t-[2rem] p-6 text-center shadow-2xl sm:rounded-3xl sm:p-8">
+      <button type="button" onclick="closeModal('rateModal')" class="float-left rounded-lg px-2 py-1 text-2xl text-slate-400 hover:text-white" aria-label="إغلاق">×</button>
+      <div class="mx-auto mt-1 grid h-14 w-14 place-items-center overflow-hidden rounded-2xl border border-amber-300/25 bg-amber-300/10">
+        <img src="icon.png" alt="" class="h-full w-full object-cover" onerror="this.remove()">
+      </div>
+      <h2 id="rateTitle" class="mt-4 text-2xl font-extrabold">قيّم مسار الغريب</h2>
+      <p class="mt-1 text-sm text-slate-400">اضغط على النجمة التي تناسب تجربتك</p>
+      <div id="rateStars" dir="ltr" class="mt-6 flex justify-center gap-1 sm:gap-2"></div>
+      <div id="rateLabel" class="gold-text mt-3 h-8 text-xl font-extrabold"></div>
+      <textarea id="rateText" rows="4" maxlength="500" placeholder="صف تجربتك (اختياري)" class="mt-4 w-full resize-none rounded-2xl border border-white/10 bg-black/30 p-4 text-sm leading-7 text-slate-100 placeholder-slate-500 outline-none transition focus:border-amber-300/50"></textarea>
+      <button id="rateSave" type="button" onclick="saveRating()" disabled class="gold-button mt-4 w-full rounded-xl px-5 py-4 font-extrabold disabled:cursor-not-allowed disabled:opacity-40">حفظ</button>
+    </div>
+  </div>
+
+  <!-- نافذة التعليقات -->
+  <div id="commentsModal" class="modal-backdrop fixed inset-0 z-50 hidden items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="cmtTitle">
+    <div class="sheet-in glass flex h-[88dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[2rem] shadow-2xl sm:h-[80vh] sm:rounded-3xl">
+      <div class="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+        <div><h2 id="cmtTitle" class="text-xl font-extrabold">التعليقات</h2><div id="cmtSubtitle" class="mt-0.5 text-xs text-slate-400"></div></div>
+        <button type="button" onclick="closeModal('commentsModal')" class="rounded-lg px-2 py-1 text-2xl text-slate-400 hover:text-white" aria-label="إغلاق">×</button>
+      </div>
+      <div id="commentsList" class="flex-1 space-y-3 overflow-y-auto px-4 py-4"></div>
+      <div class="border-t border-white/10 p-3">
+        <div class="flex items-end gap-2 rounded-2xl border border-white/10 bg-black/30 p-2 transition focus-within:border-amber-300/50">
+          <textarea id="commentInput" rows="1" maxlength="500" placeholder="صف تجربتك (اختياري)" class="max-h-28 min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm leading-6 text-slate-100 placeholder-slate-500 outline-none"></textarea>
+          <button id="commentSend" type="button" onclick="sendComment()" aria-label="إرسال" class="gold-button grid h-11 w-11 shrink-0 place-items-center rounded-xl">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" style="transform:scaleX(-1)"><path d="M3.4 20.4 21 12 3.4 3.6 3.3 10.1l12.6 1.9-12.6 1.9z"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1700,6 +1822,7 @@ window.MasarQR=__r('index');
 
     function closeModal(id) {
       if (id === 'downloadModal' && prepRaf) { cancelAnimationFrame(prepRaf); prepRaf = null; }
+      if (id === 'commentsModal' && window.stopComments) window.stopComments();
       const modal = document.getElementById(id);
       modal.classList.add('hidden');
       modal.classList.remove('flex');
@@ -1862,7 +1985,7 @@ window.MasarQR=__r('index');
 
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
-        ['downloadModal', 'qrModal', 'settingsModal'].forEach(id => {
+        ['downloadModal', 'qrModal', 'settingsModal', 'rateModal', 'commentsModal'].forEach(id => {
           if (!document.getElementById(id).classList.contains('hidden')) closeModal(id);
         });
       }
@@ -1873,6 +1996,289 @@ window.MasarQR=__r('index');
         if (event.target === modal) closeModal(modal.id);
       });
     });
+
+
+    /* =====================================================
+       المجتمع: تحميلات + تقييم + تعليقات (كلها أرقام حقيقية)
+       ===================================================== */
+    const GITHUB_REPO = 'ba1292356-cpu/msar_alghrib';
+
+    // املأ هذي القيم من Firebase Console (إعدادات المشروع > تطبيق ويب).
+    // لو تركتها فاضية: التحميلات تشتغل، والتقييم والتعليقات تنتظر التفعيل.
+    const FIREBASE_CONFIG = {
+      apiKey: '',
+      authDomain: '',
+      projectId: '',
+      appId: ''
+    };
+    const FB_VER = '10.12.2';
+    const STAR_D = 'M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+    const WAVE_A = 'M0 1.2Q3-.8 6 1.2T12 1.2T18 1.2T24 1.2T30 1.2T36 1.2T42 1.2T48 1.2V30H0Z';
+    const WAVE_B = 'M0 1.6Q3-.4 6 1.6T12 1.6T18 1.6T24 1.6T30 1.6T36 1.6T42 1.6T48 1.6V30H0Z';
+    const RATE_LABELS = ['', 'سيئ', 'مقبول', 'جيد', 'جيد جداً', 'ممتاز'];
+    const M = { ready: false, uid: null, db: null, fs: null, myRating: 0, stats: null, unsub: null, lastSend: 0, picked: 0, saving: false };
+
+    function makeStar(sizeClass) {
+      const w = document.createElement('div');
+      w.className = 'lstar-wrap ' + sizeClass;
+      w.innerHTML =
+        '<svg class="lstar" viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path class="lstar-bg" d="' + STAR_D + '"/>' +
+        '<g clip-path="url(#starClip)"><g class="lstar-level">' +
+        '<g class="lstar-wave2" opacity=".55"><path d="' + WAVE_B + '" fill="url(#goldLiquid)"/></g>' +
+        '<g class="lstar-wave"><path d="' + WAVE_A + '" fill="url(#goldLiquid)"/></g>' +
+        '</g></g>' +
+        '<path class="lstar-line" d="' + STAR_D + '"/></svg>';
+      return w;
+    }
+    function setStar(w, f, delay) {
+      f = Math.max(0, Math.min(1, f));
+      const lvl = w.querySelector('.lstar-level');
+      lvl.style.transitionDelay = (delay || 0) + 'ms';
+      lvl.style.transform = 'translateY(' + (21.2 - f * 21.4).toFixed(2) + 'px)';
+      w.classList.toggle('filled', f > 0);
+    }
+    function fillRow(container, value, stagger) {
+      [...container.children].forEach((w, i) => {
+        const el = w.classList.contains('lstar-wrap') ? w : w.querySelector('.lstar-wrap');
+        setStar(el, value - i, stagger ? i * 110 : 0);
+      });
+    }
+    const fmt = n => Number(n).toLocaleString('en-US');
+
+    function countUp(el, target) {
+      const t0 = performance.now(), dur = 1200;
+      function tick(now) {
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    /* ---- 1) عدد التحميلات الحقيقي من GitHub ---- */
+    async function loadDownloads() {
+      const el = document.getElementById('dlCount');
+      try {
+        const c = JSON.parse(sessionStorage.getItem('masarDl') || 'null');
+        if (c && Date.now() - c.t < 600000) { countUp(el, c.n); return; }
+      } catch (_) {}
+      try {
+        const res = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/releases?per_page=100', { headers: { Accept: 'application/vnd.github+json' } });
+        if (!res.ok) throw new Error('bad status');
+        const releases = await res.json();
+        let n = 0;
+        releases.forEach(r => (r.assets || []).forEach(a => { if (/\.apk$/i.test(a.name)) n += a.download_count || 0; }));
+        try { sessionStorage.setItem('masarDl', JSON.stringify({ t: Date.now(), n })); } catch (_) {}
+        countUp(el, n);
+      } catch (_) {
+        el.textContent = '—';
+        document.getElementById('dlCountSub').textContent = 'تعذّر جلب الرقم الآن. جرّب لاحقاً.';
+      }
+    }
+
+    /* ---- 2) الاتصال بـ Firebase ---- */
+    async function initCloud() {
+      if (!FIREBASE_CONFIG.apiKey || !FIREBASE_CONFIG.projectId) return false;
+      try {
+        const base = 'https://www.gstatic.com/firebasejs/' + FB_VER + '/';
+        const [appM, authM, fs] = await Promise.all([
+          import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'), import(base + 'firebase-firestore.js')
+        ]);
+        const app = appM.initializeApp(FIREBASE_CONFIG);
+        const auth = authM.getAuth(app);
+        await auth.authStateReady();
+        if (!auth.currentUser) await authM.signInAnonymously(auth);
+        M.uid = auth.currentUser.uid;
+        M.db = fs.getFirestore(app);
+        M.fs = fs;
+        M.ready = true;
+        return true;
+      } catch (e) { console.warn('Firebase init failed', e); return false; }
+    }
+
+    function renderStats() {
+      const avgStars = document.getElementById('avgStars');
+      const num = document.getElementById('avgNum');
+      const sub = document.getElementById('avgSub');
+      if (!M.ready) { num.textContent = '—'; sub.textContent = 'التقييمات ستظهر هنا فور تفعيلها'; return; }
+      const s = M.stats;
+      if (s && s.count > 0) {
+        const avg = s.sum / s.count;
+        fillRow(avgStars, avg, true);
+        num.textContent = avg.toFixed(1);
+        sub.textContent = 'من 5 · ' + fmt(s.count) + (s.count === 1 ? ' تقييم' : ' تقييم');
+      } else {
+        fillRow(avgStars, 0, false);
+        num.textContent = '—';
+        sub.textContent = 'لا توجد تقييمات بعد، كن أول من يقيّم';
+      }
+      fillRow(document.getElementById('miniStars'), M.myRating, true);
+    }
+
+    async function loadCloudData() {
+      const { db, fs, uid } = M;
+      try { const s = await fs.getDoc(fs.doc(db, 'stats', 'summary')); M.stats = s.exists() ? s.data() : { count: 0, sum: 0 }; } catch (_) { M.stats = null; }
+      try { const r = await fs.getDoc(fs.doc(db, 'ratings', uid)); M.myRating = r.exists() ? r.data().stars : 0; } catch (_) {}
+      renderStats();
+      refreshCommentMeta();
+    }
+
+    async function refreshCommentMeta() {
+      if (!M.ready) return;
+      const { db, fs } = M;
+      try {
+        const c = await fs.getCountFromServer(fs.collection(db, 'comments'));
+        document.getElementById('cmtCount').textContent = fmt(c.data().count);
+      } catch (_) {}
+      try {
+        const q = fs.query(fs.collection(db, 'comments'), fs.orderBy('createdAt', 'desc'), fs.limit(1));
+        const snap = await fs.getDocs(q);
+        if (!snap.empty) document.getElementById('cmtPreview').textContent = '“' + snap.docs[0].data().text + '”';
+      } catch (_) {}
+    }
+
+    /* ---- 3) نافذة التقييم ---- */
+    function buildRateStars() {
+      const box = document.getElementById('rateStars');
+      for (let i = 1; i <= 5; i++) {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'star-btn'; b.setAttribute('aria-label', i + ' من 5');
+        b.appendChild(makeStar('h-full w-full'));
+        b.addEventListener('click', () => pickStar(i, true));
+        box.appendChild(b);
+      }
+    }
+    function pickStar(n, animate) {
+      M.picked = n;
+      const kids = [...document.getElementById('rateStars').children];
+      kids.forEach((b, i) => {
+        setStar(b.firstChild, i < n ? 1 : 0, animate && i < n ? i * 90 : 0);
+      });
+      if (animate) { const b = kids[n - 1]; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+      document.getElementById('rateLabel').textContent = RATE_LABELS[n] || '';
+      document.getElementById('rateSave').disabled = n < 1;
+    }
+    function openRateModal() {
+      document.getElementById('rateText').value = '';
+      M.picked = 0;
+      pickStar(0, false);
+      document.getElementById('rateSave').textContent = M.myRating ? 'تحديث التقييم' : 'حفظ';
+      openModal('rateModal');
+      if (M.myRating) setTimeout(() => pickStar(M.myRating, true), 250);
+    }
+    async function saveRating() {
+      if (M.saving || M.picked < 1) return;
+      if (!M.ready) { showToast('خدمة التقييم لم تُفعّل بعد. حاول لاحقاً.'); return; }
+      const stars = M.picked;
+      const text = document.getElementById('rateText').value.trim();
+      const btn = document.getElementById('rateSave');
+      M.saving = true; btn.disabled = true; btn.textContent = 'جارٍ الحفظ…';
+      try {
+        const { db, fs, uid } = M;
+        const rRef = fs.doc(db, 'ratings', uid), sRef = fs.doc(db, 'stats', 'summary');
+        await fs.runTransaction(db, async tx => {
+          const r = await tx.get(rRef), s = await tx.get(sRef);
+          const oldStars = r.exists() ? r.data().stars : 0;
+          const cnt = s.exists() ? s.data().count : 0, sum = s.exists() ? s.data().sum : 0;
+          tx.set(rRef, { stars: stars, updatedAt: fs.serverTimestamp() });
+          tx.set(sRef, { count: cnt + (r.exists() ? 0 : 1), sum: sum + stars - oldStars });
+        });
+        if (text) await fs.addDoc(fs.collection(db, 'comments'), { text: text, stars: stars, uid: uid, createdAt: fs.serverTimestamp() });
+        M.myRating = stars;
+        closeModal('rateModal');
+        showToast('شكراً لك، تم حفظ تقييمك.');
+        loadCloudData();
+      } catch (e) {
+        console.warn(e);
+        showToast('تعذّر حفظ التقييم. جرّب مرة ثانية.');
+      } finally {
+        M.saving = false; btn.textContent = M.myRating ? 'تحديث التقييم' : 'حفظ'; btn.disabled = M.picked < 1;
+      }
+    }
+
+    /* ---- 4) نافذة التعليقات ---- */
+    function timeAgo(ts) {
+      if (!ts || !ts.toMillis) return 'الآن';
+      const diff = (ts.toMillis() - Date.now()) / 1000;
+      const rtf = new Intl.RelativeTimeFormat('ar', { numeric: 'auto' });
+      const steps = [['year', 31536000], ['month', 2592000], ['day', 86400], ['hour', 3600], ['minute', 60]];
+      for (const [u, s] of steps) { if (Math.abs(diff) >= s) return rtf.format(Math.round(diff / s), u); }
+      return 'الآن';
+    }
+    function cmtMessage(text) {
+      const list = document.getElementById('commentsList');
+      list.innerHTML = '';
+      const p = document.createElement('p');
+      p.className = 'px-4 py-12 text-center text-sm leading-7 text-slate-500';
+      p.textContent = text;
+      list.appendChild(p);
+    }
+    function renderComments(docs) {
+      const list = document.getElementById('commentsList');
+      list.innerHTML = '';
+      document.getElementById('cmtSubtitle').textContent = docs.length ? fmt(docs.length) + (docs.length >= 50 ? '+ تعليق (الأحدث)' : ' تعليق') : '';
+      if (!docs.length) { cmtMessage('لا توجد تعليقات بعد. كن أول من يكتب تجربته.'); return; }
+      docs.forEach(d => {
+        const c = d.data(), mine = c.uid === M.uid;
+        const card = document.createElement('div'); card.className = 'cmt' + (mine ? ' mine' : '');
+        const top = document.createElement('div'); top.className = 'flex items-center justify-between gap-2';
+        const who = document.createElement('div'); who.className = 'text-sm font-bold ' + (mine ? 'text-amber-200' : 'text-slate-200');
+        who.textContent = mine ? 'تعليقك' : 'مستخدم مسار الغريب';
+        const when = document.createElement('div'); when.className = 'text-[11px] text-slate-500'; when.textContent = timeAgo(c.createdAt);
+        top.appendChild(who); top.appendChild(when); card.appendChild(top);
+        if (c.stars > 0) {
+          const st = document.createElement('div'); st.dir = 'ltr'; st.className = 'mt-1 text-sm tracking-widest text-right';
+          st.innerHTML = '<span style="color:#e5b842">' + '★'.repeat(c.stars) + '</span><span style="color:rgba(255,255,255,.18)">' + '★'.repeat(5 - c.stars) + '</span>';
+          card.appendChild(st);
+        }
+        const t = document.createElement('p'); t.className = 'mt-2 whitespace-pre-wrap break-words text-sm leading-7 text-slate-300'; t.textContent = c.text;
+        card.appendChild(t); list.appendChild(card);
+      });
+    }
+    function openCommentsModal() {
+      openModal('commentsModal');
+      if (!M.ready) { cmtMessage('خدمة التعليقات لم تُفعّل بعد. ستظهر هنا تعليقات المستخدمين الحقيقية.'); return; }
+      cmtMessage('جارٍ التحميل…');
+      const { db, fs } = M;
+      const q = fs.query(fs.collection(db, 'comments'), fs.orderBy('createdAt', 'desc'), fs.limit(50));
+      M.unsub = fs.onSnapshot(q, snap => renderComments(snap.docs), () => cmtMessage('تعذّر تحميل التعليقات الآن.'));
+    }
+    window.stopComments = function () { if (M.unsub) { M.unsub(); M.unsub = null; } };
+    async function sendComment() {
+      const inp = document.getElementById('commentInput');
+      const text = inp.value.trim();
+      if (!text) return;
+      if (!M.ready) { showToast('خدمة التعليقات لم تُفعّل بعد.'); return; }
+      if (Date.now() - M.lastSend < 20000) { showToast('انتظر قليلاً قبل إرسال تعليق آخر.'); return; }
+      const btn = document.getElementById('commentSend'); btn.disabled = true;
+      try {
+        const { db, fs, uid } = M;
+        await fs.addDoc(fs.collection(db, 'comments'), { text: text, stars: M.myRating || 0, uid: uid, createdAt: fs.serverTimestamp() });
+        M.lastSend = Date.now();
+        inp.value = ''; inp.style.height = 'auto';
+        document.getElementById('commentsList').scrollTop = 0;
+        refreshCommentMeta();
+      } catch (e) { console.warn(e); showToast('تعذّر إرسال التعليق. جرّب مرة ثانية.'); }
+      finally { btn.disabled = false; }
+    }
+    document.getElementById('commentInput').addEventListener('input', function () {
+      this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 112) + 'px';
+    });
+    document.getElementById('commentInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey && window.matchMedia('(hover: hover)').matches) { e.preventDefault(); sendComment(); }
+    });
+
+    /* ---- تشغيل ---- */
+    (function initCommunity() {
+      const avg = document.getElementById('avgStars');
+      for (let i = 0; i < 5; i++) avg.appendChild(makeStar('h-9 w-9 sm:h-11 sm:w-11'));
+      const mini = document.getElementById('miniStars');
+      for (let i = 0; i < 5; i++) mini.appendChild(makeStar('h-7 w-7'));
+      buildRateStars();
+      loadDownloads();
+      initCloud().then(ok => { if (ok) loadCloudData(); else renderStats(); });
+    })();
 
     loadSettings();
     loadManifest();
