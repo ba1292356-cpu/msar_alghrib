@@ -1,13 +1,10 @@
 {
-    "versionName":  "1.0.6",
-    "buildNumber":  7,
-    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.6/app-release.apk",
-    "sizeBytes":  106938431,
-    "sha256":  "7e0afe47249d1f739bde6208736866f1cb0996dd7db646a135e2121f8730db6b",
+    "versionName":  "1.0.7",
+    "buildNumber":  8,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.7/app-release.apk",
+    "sizeBytes":  107003967,
+    "sha256":  "ba696de009ededaca8859cd8439dc6597d90eedcfacb93782c6a928e42a23b3f",
     "notes":  [
-                  "التحديث يكمل بالخلفية مع إشعار علوي بالتقدم",
-                  "زر الرجوع أثناء التحديث يطلعك للشاشة الرئيسية",
-                  "تحسين ألوان النوافذ مع الأنماط والأوضاع",
-                  "تقوية قفل التطبيق"
+                  "إصلاح بعض الاخطاء"
               ]
 }
