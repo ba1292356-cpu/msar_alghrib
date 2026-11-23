@@ -10,27 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="icon.png">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
-          colors: {
-            ink: '#070b14',
-            gold: '#e5b842',
-            emerald: '#0d8b68'
-          },
-          boxShadow: {
-            glow: '0 0 70px rgba(229,184,66,.12)',
-            emerald: '0 0 70px rgba(13,139,104,.13)'
-          }
-        }
-      }
-    };
-  </script>
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
@@ -132,6 +113,8 @@
     @keyframes sheet { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
   </style>
+  <!-- يُبنى بالأمر: build_site_css.ps1 (ملف tailwind.css لازم يُرفع مع هذا الملف) -->
+  <link rel="stylesheet" href="tailwind.css">
 </head>
 
 <body class="font-tajawal antialiased">
