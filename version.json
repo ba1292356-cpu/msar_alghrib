@@ -1,10 +1,10 @@
 {
-    "versionName":  "1.0.7",
-    "buildNumber":  8,
-    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.7/app-release.apk",
-    "sizeBytes":  107003967,
-    "sha256":  "ba696de009ededaca8859cd8439dc6597d90eedcfacb93782c6a928e42a23b3f",
+    "versionName":  "1.0.8",
+    "buildNumber":  9,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.8/app-release.apk",
+    "sizeBytes":  52639564,
+    "sha256":  "3aaac1a20e585b843bb5f7785a13c5371d98263cff10722ac627486433ca02f4",
     "notes":  [
-                  "إصلاح بعض الاخطاء"
+                  "تنزيل مقاطع صفاء الطبيعة والتفاسير من الإنترنت لتقليل حجم التطبيق"
               ]
 }
