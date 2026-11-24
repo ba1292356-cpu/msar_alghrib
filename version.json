@@ -1,14 +1,10 @@
 {
-    "versionName":  "1.0.9",
-    "buildNumber":  10,
-    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.9/app-release.apk",
-    "sizeBytes":  52836824,
-    "sha256":  "7226e1f2d05c36bc101203e327df9ef3ae471dbac58cbf53a889688368e3ce3a",
+    "versionName":  "1.0.10",
+    "buildNumber":  11,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.10/app-release.apk",
+    "sizeBytes":  52836876,
+    "sha256":  "8450e6ac1a4881564a8cb6b024674f8943dfef5c2be64d93aa4ea2bb58bebc28",
     "notes":  [
-                  "ورد فردي: صفحة متابعة كاملة بسجل يومي وإحصائيات وحالة الالتزام (ملتزم / متقدم / مقصر).",
-                  "الورد الجماعي (الرفقة): أنشئ رفقة وادع أصدقاءك برقم الحساب أو انضم بكود الرفقة.",
-                  "دعوات وطلبات الانضمام تصل بإشعار على جوالك وتظهر كنافذة تلقائية عند فتح التطبيق.",
-                  "صفحة الرفقة: ورد اليوم من أتم ومن ينتظر دعوة بظهر الغيب وتذكير لطيف.",
-                  "شريط أيام الختمة ودعاء الختم وبدء ختمة جديدة مع نفس الرفقة."
+                  "ميزة رفقه"
               ]
 }
