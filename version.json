@@ -1,10 +1,10 @@
 {
-    "versionName":  "1.0.12",
-    "buildNumber":  13,
-    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.12/app-release.apk",
+    "versionName":  "1.0.13",
+    "buildNumber":  14,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.13/app-release.apk",
     "sizeBytes":  52902540,
-    "sha256":  "34a49a08f9f11c1dc9ee28568308ddc1eaf0776526a60d5b03b6ec97eee383ab",
+    "sha256":  "ea99e582d1e5fb4382a7ed832c9fce2d80d1733c7202171234e959228f58131e",
     "notes":  [
-                  "إصلاح في الاشعارات وإضافة ميزة إغلاقها"
+                  "تطوير صفحة رفقه"
               ]
 }
