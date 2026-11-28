@@ -1,9 +1,9 @@
 {
-    "versionName":  "1.0.17",
-    "buildNumber":  18,
-    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.17/app-release.apk",
-    "sizeBytes":  52968128,
-    "sha256":  "67f0205b777c17bb05c3a64d70c06d7ca56d3538b5f50ce93378f586c8e72c38",
+    "versionName":  "1.0.18",
+    "buildNumber":  19,
+    "apkUrl":  "https://github.com/ba1292356-cpu/msar_alghrib/releases/download/v1.0.18/app-release.apk",
+    "sizeBytes":  53099820,
+    "sha256":  "0f0e74bbadea1669fe6d0b80f9f03e67980fd0dc581e6ac60079de54eed2ed70",
     "notes":  [
                   "إصلاحات"
               ]
